@@ -21,8 +21,10 @@ sequenceDiagram
   Ingestion->>Router: Normalize inbound email
   Router->>Router: Match sender domain
   Router->>Queue: Enqueue job by route target
+```
 
-## OAuth 2.0 Flow
+
+##OAuth 2.0 Flow
 * Client calls GET /oauth/google/start?userId=<id>.
 * The service creates a signed state value and redirects to Google's OAuth consent screen.
 * Google redirects to /oauth/google/callback with code and state.
@@ -45,7 +47,7 @@ sequenceDiagram
 
 The endpoint validates the payload, routes it by sender domain, and returns 202 Accepted with the queue selected.
 
-## Routing Logic
+##Routing Logic
 Routes live in src/routing/domainRouter.ts.
 
 customer.com routes to customer-success
@@ -55,7 +57,7 @@ everything else routes to general-triage
 Simple Queue
 src/queue/simpleQueue.ts contains an in-memory FIFO queue keyed by queue name. This is intentionally tiny for the routing test. In production, replace it with Redis/BullMQ, SQS, Pub/Sub, or another durable queue.
 
-## Core Structure
+##Core Structure
 src/
   auth/googleOAuth.ts       OAuth URL generation, state signing, code exchange
   config.ts                 Environment parsing
@@ -66,7 +68,7 @@ src/
   store/tokenStore.ts       In-memory token persistence
   types.ts
 
-## Run
+##Run
 npm install
 cp .env.example .env
 npm run dev
