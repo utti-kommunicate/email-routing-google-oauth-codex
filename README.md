@@ -37,6 +37,7 @@ sequenceDiagram
 * Use Google Pub/Sub Gmail push notifications or a polling worker to fetch new messages, then post normalized email data into /email/ingest.
 
 ##Email Ingestion Endpoint
+
 {
   "mailboxUserId": "user_123",
   "from": "founder@customer.com",
