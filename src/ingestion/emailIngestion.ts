@@ -1,8 +1,9 @@
+import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { InboundEmail } from "../types.js";
 
 const EmailPayloadSchema = z.object({
-  id: z.string().default(() => crypto.randomUUID()),
+  id: z.string().default(() => randomUUID()),
   provider: z.literal("google").default("google"),
   mailboxUserId: z.string().min(1),
   from: z.string().email().or(z.string().includes("@")),

@@ -1,10 +1,11 @@
+import { randomUUID } from "node:crypto";
 import { QueuedEmailJob, RouteTarget, InboundEmail } from "../types.js";
 
 const queues = new Map<string, QueuedEmailJob[]>();
 
 export function enqueueEmail(target: RouteTarget, email: InboundEmail): QueuedEmailJob {
   const job: QueuedEmailJob = {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     target,
     email,
     attempts: 0,
